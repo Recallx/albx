@@ -15,7 +15,7 @@ app.use('/assets',express.static('assets'));
 app.use('/uploads',express.static('uploads'));
 
 //引用body-parser模块
-app.use(bodyParser.urlencoded,{express : false});
+app.use(bodyParser.urlencoded({express : false}));
 
 app.set('view engine','ejs');
 

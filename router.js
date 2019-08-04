@@ -1,6 +1,7 @@
 
 
 const pageconterollers = require('./controllers/pageconterollers.js')
+const usersConterollers = require('./controllers/userConterollers')
 const express =  require('express');
 
 const router = express.Router();
@@ -22,5 +23,9 @@ router.get('/index',pageconterollers.getIndexPage)
     .get('/admin/settings',pageconterollers.getSettings)
     .get('/admin/slides',pageconterollers.getSlides)
     .get('/admin/users',pageconterollers.getUsers)
+
+
+//处理登录页面请求
+    .post('/index.html',usersConterollers.login)
 //暴露
 module.exports = router;
