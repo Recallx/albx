@@ -11,7 +11,7 @@ router.get('/index',pageconterollers.getIndexPage)
       .get('/detail',pageconterollers.getDetailPage)
       .get('/list',pageconterollers.getListPage)
 //处理后台页面
-    .get('/admin',pageconterollers.getAdminIndex)
+    .get('/admin/',pageconterollers.getAdminIndex)
     .get('/admin/categories',pageconterollers.getCatergories)
     .get('/admin/comments',pageconterollers.getComments)
     .get('/admin/login',pageconterollers.getLogin)
@@ -26,6 +26,6 @@ router.get('/index',pageconterollers.getIndexPage)
 
 
 //处理登录页面请求
-    .post('/index.html',usersConterollers.login)
+    .post('/login',usersConterollers.login)
 //暴露
 module.exports = router;
