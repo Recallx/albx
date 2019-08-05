@@ -14,7 +14,17 @@ exports.getListPage = (req,res)=>{
 
 //后台页面
 exports.getAdminIndex = (req,res)=>{
-    res.render('admin/index.ejs');
+    //判断用户是否登录过，之前写入的session判断
+    if(req.session.isLogin && req.session.isLogin == 'true'){
+        //证明就是有登录就返回主页
+        res.render('admin/index.ejs')
+    }else{
+        //否则就是没有登录过，就返回登录页
+        res.writeHead(301,{
+            'location' : '/admin/login'
+        })
+        res.end()
+    }
 };
 exports.getCatergories = (req,res)=>{
     res.render('admin/categories.ejs')
