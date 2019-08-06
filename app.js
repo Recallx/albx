@@ -8,8 +8,8 @@ const router = require('./router')
 
 const app = express();
 
-app.listen(8080,()=>{
-    console.log('127.0.0.1:8080')
+app.listen(8888,()=>{
+    console.log('http://127.0.0.1:8888')
 });
 
 //注册express-session中间件
@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({extended : false}));
 app.use(bodyParser.json());
 
 app.set('view engine','ejs');
-
+app.set('views', __dirname + "/views")
 //注册导航守卫
 app.use(function(req,res,next){
     //判断三个页面不需要登录状态

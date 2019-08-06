@@ -2,6 +2,7 @@
 
 const pageconterollers = require('./controllers/pageconterollers.js')
 const usersConterollers = require('./controllers/userConterollers')
+const Postoconterollers = require('./controllers/Postoconterollers')
 const express =  require('express');
 
 const router = express.Router();
@@ -27,5 +28,7 @@ router.get('/index',pageconterollers.getIndexPage)
 
 //处理登录页面请求
     .post('/login',usersConterollers.login)
+//添加显示文章页面
+    .get('/getAllPost',Postoconterollers.getAllPost)
 //暴露
 module.exports = router;
