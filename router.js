@@ -3,7 +3,7 @@
 const pageconterollers = require('./controllers/pageconterollers.js')
 const usersConterollers = require('./controllers/userConterollers')
 const Postoconterollers = require('./controllers/Postoconterollers')
-const cateConterollers = require('./model/cateModel')
+const cateConterollers = require('./controllers/cateConterollers')
 const express =  require('express');
 
 const router = express.Router();
@@ -32,6 +32,6 @@ router.get('/index',pageconterollers.getIndexPage)
 //添加显示文章页面
     .get('/getAllPost',Postoconterollers.getAllPost)
 //处理数据筛选的请求
-    .get('/getAllcate',cateConterollers.getAllcate)
+    .get('/getAllCate',cateConterollers.getAllCate)
 //暴露
 module.exports = router;

@@ -1,5 +1,6 @@
 
 
+
 //发送ajax请求，
 $(function () {
     //声明全局表量
@@ -49,4 +50,34 @@ $(function () {
             }
         })
     }
+
+    //加载分类数据
+    $.ajax({
+        type:'get',
+        url:'/getAllCate',
+        dataType:'json',
+        success : function(res){
+            console.log(res)
+            //动态生成下拉的数据
+            let str = `<option value="all">所有分类</option>`;
+            //循环拿到的数组
+            for(let i = 0; i < res.data.length; i++){
+                //替换掉格式里面的动态值
+                str += `<option value="${res.data[i].id}">${res.data[i].name}</option>`
+            }
+            //添加到前代元素
+            $('.cateSelector').html(str);
+        }
+    })
+
+    //注册筛选点击事件
+    $('.btn-search').on('click',function(){
+        //收集数据
+        let obj = {
+            cate : $('.cateSelector').val(),
+            statu : $('.statuSelector').val()
+        }
+        //发起ajax请求
+        init(obj);
+    })
 })
