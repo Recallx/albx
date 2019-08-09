@@ -36,5 +36,7 @@ router.get('/index',pageconterollers.getIndexPage)
     .get('/getAllCate',cateConterollers.getAllCate)
 //处理文章添加图片预览的请求
     .post('/uploadFile',uploadFileConterollers.uploadFile)
+//处理富文本框的请求
+    .post('/addPosd',Postoconterollers.addPosd)
 //暴露
 module.exports = router;

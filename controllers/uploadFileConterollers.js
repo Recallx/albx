@@ -22,11 +22,11 @@ exports.uploadFile = (req,res)=>{
         }else{
             // console.log(files)
             //用到一个第三方插件，这个插件可以拿到path路径后面部分
-            let img = path.basename(files.img.path)
+            let imgname = path.basename(files.img.path)
             res.json({
                 code:200,
                 msg : '获取图片成功',
-                img:img
+                img:imgname
             })
         }
     })

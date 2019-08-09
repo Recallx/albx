@@ -11,17 +11,16 @@ exports.getAllPost = (obj, callback) => {
                 join users on posts.user_id = users.id
                 join categories on posts.category_id = categories.id 
                 where 1=1  `//这里使用恒成立，新方法，方便下面判断，直接用and连接起来就可以了。
-            //判断页面的所有分类里面，用户有没有选择，如果选择了
-            if(obj.cate && obj.cate != 'all'){//判断分类有没有传数据
-                sql += `  and category_id = ${obj.cate}`;
-            }
-            //再判断状态是否有数据
-            if(obj.statu && obj.statu != 'all'){
-                sql += `  and posts.status = ${obj.statu}`;
-            }
-                
-        sql +=  `  order by id desc
-                limit ${(obj.pageNum-1)*obj.pageSize},${obj.pageSize}`;
+    //判断页面的所有分类里面，用户有没有选择，如果选择了
+    if( obj.cate && obj.cate != 'all'){ // 有没有传递分类数据
+        sql += ` and category_id = ${obj.cate}`
+    }
+    if(obj.status && obj.status != 'all'){
+        sql += ` and posts.status ='${obj.status}'`
+    }
+
+    sql += `  order by id desc
+                limit ${(obj.pageNum - 1) * obj.pageSize},${obj.pageSize}`;
 
     //执行sql语句
     conn.query(sql, (err, results) => {
@@ -32,7 +31,14 @@ exports.getAllPost = (obj, callback) => {
             sql = `select count(*) as cnt 
                     from posts
                     join users on posts.user_id = users.id
-                    join categories on posts.category_id = categories.id`
+                    join categories on posts.category_id = categories.id
+                    where 2=2   `
+            if (obj.cate && obj.cate != 'all') { // 有没有传递分类数据
+                sql += ` and category_id = ${obj.cate}`
+            }
+            if (obj.status && obj.status != 'all') {
+                sql += ` and posts.status ='${obj.status}'`
+            }
             conn.query(sql, (err1, res2) => {
                 if (err1) {
                     callback(err1)
@@ -44,3 +50,19 @@ exports.getAllPost = (obj, callback) => {
         }
     });
 };
+
+exports.addPosd = (obj, callback) => {
+    //准备sql语句，将对应的数据插入到服务器中保存
+    //这里用到sql的简写方法，？就代表所有的数据
+    let sql = `insert into posts set ?`;
+    //执行sql语句
+    //query有多个参数，这里可以吧obj传进去，就会把对应的数据传入数据库中
+    conn.query(sql, obj, (err, result) => {
+        if (err) {
+            callback(err);
+        } else {
+            //成功就返回空就可以了，因为数据直接存入数据库里
+            callback(null);
+        }
+    })
+}

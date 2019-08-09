@@ -5,7 +5,7 @@
 $(function () {
     //声明全局表量
     var pageNum = 1;
-    var pageSize = 2;
+    var pageSize = 10;
     //把获取数据的ajax请求封装起来，下面要用的时候，直接传参数调用
     function init(search) {
         $.ajax({
