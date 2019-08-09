@@ -4,6 +4,7 @@ const pageconterollers = require('./controllers/pageconterollers.js')
 const usersConterollers = require('./controllers/userConterollers')
 const Postoconterollers = require('./controllers/Postoconterollers')
 const cateConterollers = require('./controllers/cateConterollers')
+const uploadFileConterollers = require('./controllers/uploadFileConterollers')
 const express =  require('express');
 
 const router = express.Router();
@@ -33,5 +34,7 @@ router.get('/index',pageconterollers.getIndexPage)
     .get('/getAllPost',Postoconterollers.getAllPost)
 //处理数据筛选的请求
     .get('/getAllCate',cateConterollers.getAllCate)
+//处理文章添加图片预览的请求
+    .post('/uploadFile',uploadFileConterollers.uploadFile)
 //暴露
 module.exports = router;

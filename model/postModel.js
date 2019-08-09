@@ -4,7 +4,7 @@ const conn = require('../utils/Model')
 
 //准备方法
 exports.getAllPost = (obj, callback) => {
-    console.log(obj)
+    // console.log(obj)
     //准备sql语句
     let sql = `select posts.*,users.nickname,categories.name
                 from posts
