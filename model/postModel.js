@@ -66,3 +66,45 @@ exports.addPosd = (obj, callback) => {
         }
     })
 }
+
+
+//根据id查询文章
+exports.getPostById = (id,callback)=>{
+    //准备id查询的sql语句
+    let sql = 'SELECT * FROM posts WHERE id = ' + id;
+    //执行语句
+    conn.query(sql,(err,result)=>{
+        if(err){
+            callback(err)
+        }else{
+            callback(null,result[0])
+        }
+    })
+}
+
+exports.editPostById = (obj,callback)=>{
+    //准备sql语句
+    let sql = `update posts set ? where id = ? `;
+    //执行sql语句
+    conn.query(sql,[obj,obj.id],(err,results)=>{
+        if(err){
+            callback(err);
+        }else{
+            callback(null);
+        }
+    })
+}
+
+//添加删除方法
+exports.delPostById = (id,callback)=>{
+    //准备sql语句
+    let sql = `delete from posts where id = ? `
+
+    conn.query(sql,[id],(err)=>{
+        if(err){
+            callback(err)
+        }else{
+            callback(null)
+        }
+    })
+}

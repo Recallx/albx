@@ -38,5 +38,13 @@ router.get('/index',pageconterollers.getIndexPage)
     .post('/uploadFile',uploadFileConterollers.uploadFile)
 //处理富文本框的请求
     .post('/addPosd',Postoconterollers.addPosd)
+
+    
+//处理根据id查询文章请求
+    .get('/getPostById',Postoconterollers.getPostById)
+//处理文章编辑的操作请求
+    .post('/editPostById',Postoconterollers.editPostById)
+//处理删除请求
+    .get('/delPostById',Postoconterollers.delPostById)
 //暴露
 module.exports = router;

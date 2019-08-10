@@ -21,5 +21,5 @@ $(function(){
     }
 
     //加上高亮效果，路由也是唯一的，所以这里获取路由页面，到哪个页面就加上active
-    $('#' + routerName).addClass('active')
+    // $('#' + routerName).addClass('active')
 })

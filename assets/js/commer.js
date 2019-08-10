@@ -13,5 +13,17 @@ var itcast = {
             routerName = str.substring(str.lastIndexOf('/') + 1, str.indexOf('/'))
         }
         return routerName;
+    },
+    getPrameter:(str)=>{
+        let obj = {};
+        str = str.substring(1);
+        //连接拆开
+        let  temp = str.split('&');
+        for(let i = 0; i < temp.length; i++){
+            //再把=号拆开
+            let arr = temp[i].split('=')
+            obj[arr[i]] = arr[1]
+        }
+        return obj
     }
 }

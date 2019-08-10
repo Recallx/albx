@@ -80,4 +80,20 @@ $(function () {
         //发起ajax请求
         init(obj);
     })
+
+    //委托注册点击删除事件
+    $('tbody').on('click','.btdel',function(){
+        let id = $(this).data('id')
+        if(confirm('您确定要删除吗？')){
+            $.ajax({
+                type:'get',
+                url:'/delPostById',
+                data:{id},
+                success:function(res){
+                    alert(res.msg)
+                    location.href = '/admin/posts';
+                }
+            })
+        }
+    })
 })

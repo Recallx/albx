@@ -27,6 +27,7 @@ exports.addPosd = (req, res) => {
     //拿到post上来的数据
     let obj = req.body;
     //要给views和likes设置默认值，还有拿到对应的user_id
+    obj.id = null
     obj.views = 0;
     obj.likes = 0;
     obj.user_id = req.session.currenyUser.id
@@ -40,6 +41,51 @@ exports.addPosd = (req, res) => {
                 code: 200,
                 msg: '新增数据成功'
             })
+        }
+    })
+}
+
+exports.getPostById = (req, res) => {
+    //拿到id
+    let id = req.query.id;
+    //调用model方法
+    postModel.getPostById(id, (err, data) => {
+        if (err) {
+            res.json({ code: 400, msg: '获取数据错误' })
+        } else {
+            //将日期数据格式化
+            data.created = moment(data.created).format('YYYY-MM-DDTHH:mm')
+            res.json({ code: 200, msg: '获取数据成功', data: data })
+        }
+    })
+}
+
+
+//处理编辑文章
+exports.editPostById = (req,res)=>{
+    //拿到post上来的数据
+    let obj = req.body;
+    //调用数据模块
+    postModel.editPostById(obj,(err)=>{
+        if(err){
+            console.log(err)
+            res.json({code:400,msg:'编辑文章失败'})
+        }else{
+            res.json({code:200,msg:'编辑文章成功'})
+        }
+    })
+}
+
+//处理删除文章
+exports.delPostById = (req,res)=>{
+    //拿到get上来的id
+    let id = req.query.id
+    //调用model
+    postModel.delPostById(id,(err)=>{
+        if(err){
+            res.json({code:400,msg : '删除文章失败'})
+        }else{
+            res.json({code:200,msg:'删除文章成功'})
         }
     })
 }
