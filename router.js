@@ -46,5 +46,9 @@ router.get('/index',pageconterollers.getIndexPage)
     .post('/editPostById',Postoconterollers.editPostById)
 //处理删除请求
     .get('/delPostById',Postoconterollers.delPostById)
+//处理cate的编辑操作
+    .post('/editPostCate',cateConterollers.editPostById)
+//处理categories删除请求
+    .get('/delPostByIdcate',cateConterollers.delPostByIdcate)
 //暴露
 module.exports = router;

@@ -14,3 +14,30 @@ exports.getAllCate = (callback)=>{
         }
     })
 }
+
+//处理编辑的数据
+exports.editPostById = (obj,callback)=>{
+    console.log(obj)
+    //准备编辑的sql语句
+    let sql = `update categories set ? where id = ?`
+    conn.query(sql,[obj,obj.id],(err,results)=>{
+        if(err){
+            callback(err)
+        }else{
+            callback(null)
+        }
+    })
+}
+
+//处理删除数据
+exports.delPostByIdcate = (id,callback)=>{
+    //准备删除的sql语句
+    let sql = `delete from categories where id = ?  `;
+    conn.query(sql,[id],(err)=>{
+        if(err){
+            callback(err)
+        }else{
+            callback(null)
+        }
+    })
+}
