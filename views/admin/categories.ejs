@@ -9,13 +9,13 @@
       <h1>分类目录</h1>
     </div>
     <!-- 有错误信息时展示 -->
-    <!-- <div class="alert alert-danger">
-        <strong>错误！</strong>发生XXX错误
-      </div> -->
+    <div class="alert alert-danger" style="display: none">
+        <strong>提示！</strong> <span>发生XXX错误</span>
+      </div>
     <div class="row">
       <div class="col-md-4">
         <form>
-          <input type="hidden" id="id" value="" name="id">
+          <input type="hidden" id="id" name="id">
           <h2 class="optinfo">添加新分类目录</h2>
           <div class="form-group">
             <label for="name">名称</label>
@@ -35,45 +35,19 @@
       <div class="col-md-8">
         <div class="page-action">
           <!-- show when multiple checked -->
-          <a class="btn btn-danger btn-sm" href="javascript:;" style="display: none">批量删除</a>
+          <a class="btn btn-danger btn-sm btndels" href="javascript:;" style="display: none">批量删除</a>
         </div>
         <table class="table table-striped table-bordered table-hover">
           <thead>
             <tr>
-              <th class="text-center" width="40"><input type="checkbox"></th>
+              <th class="text-center" width="40"><input type="checkbox" class="btnbox"></th>
               <th>名称</th>
               <th>Slug</th>
               <th class="text-center" width="100">操作</th>
             </tr>
           </thead>
           <tbody>
-            <!-- <tr>
-              <td class="text-center"><input type="checkbox"></td>
-              <td>未分类</td>
-              <td>uncategorized</td>
-              <td class="text-center">
-                <a href="javascript:;" class="btn btn-info btn-xs">编辑</a>
-                <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-center"><input type="checkbox"></td>
-              <td>未分类</td>
-              <td>uncategorized</td>
-              <td class="text-center">
-                <a href="javascript:;" class="btn btn-info btn-xs">编辑</a>
-                <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-              </td>
-            </tr>
-            <tr>
-              <td class="text-center"><input type="checkbox"></td>
-              <td>未分类</td>
-              <td>uncategorized</td>
-              <td class="text-center">
-                <a href="javascript:;" class="btn btn-info btn-xs">编辑</a>
-                <a href="javascript:;" class="btn btn-danger btn-xs">删除</a>
-              </td>
-            </tr> -->
+
           </tbody>
         </table>
       </div>
@@ -87,7 +61,7 @@
 <script type="text/template" id="p2">
     {{each data as value index}}
     <tr>
-        <td class="text-center"><input type="checkbox"></td>
+        <td class="text-center"><input type="checkbox" class="btnSigon" data-id = '{{value.id}}' ></td>
         <td>{{value.name}}</td>
         <td>{{value.slug}}</td>
         <td class="text-center">

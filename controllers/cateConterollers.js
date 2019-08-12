@@ -37,13 +37,28 @@ exports.editPostById = (req, res) => {
 exports.delPostByIdcate = (req,res)=>{
     //拿到id
     let id = req.query.id;
-    // console.log(id)
+    console.log(id)
     //调用model
     cateModel.delPostByIdcate(id,(err)=>{
         if(err){
             res.json({code:400,msg:'删除数据失败'})
         }else{
             res.json({code:200,msg:'删除数据成功'})
+        }
+    })
+}
+
+//处理新增方法
+exports.addCate = (req,res)=>{
+    //拿到post的数据
+    let obj = req.body;
+    obj.id = null
+    console.log(obj)
+    cateModel.addCate(obj,(err)=>{
+        if(err){
+            res.json({code:400,msg:'新增数据失败'})
+        }else{
+            res.json({code:200,msg:'新增数据成功'})
         }
     })
 }

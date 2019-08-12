@@ -50,5 +50,8 @@ router.get('/index',pageconterollers.getIndexPage)
     .post('/editPostCate',cateConterollers.editPostById)
 //处理categories删除请求
     .get('/delPostByIdcate',cateConterollers.delPostByIdcate)
+//处理新增数据
+    .post('/addCate',cateConterollers.addCate)
+
 //暴露
 module.exports = router;

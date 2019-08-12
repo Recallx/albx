@@ -31,9 +31,24 @@ exports.editPostById = (obj,callback)=>{
 
 //处理删除数据
 exports.delPostByIdcate = (id,callback)=>{
+    // console.log(id)
     //准备删除的sql语句
-    let sql = `delete from categories where id = ?  `;
-    conn.query(sql,[id],(err)=>{
+    let sql = `delete from categories where id in (${id})  `;
+    conn.query(sql,(err)=>{
+        if(err){
+            callback(err)
+        }else{
+            callback(null)
+        }
+    })
+}
+
+//处理新增数据
+exports.addCate = (obj,callback)=>{
+    // console.log(obj)
+    //准备新增的sql语句
+    let sql = 'insert into categories set  ?' 
+    conn.query(sql,obj,(err)=>{
         if(err){
             callback(err)
         }else{
